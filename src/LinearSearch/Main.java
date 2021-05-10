@@ -25,6 +25,6 @@ public class Main {
         };
 
         System.out.println(LinearSearch.search(students, new Student("张三")));
-        System.out.println(LinearSearch.searchByRecursion(students, new Student("张三")));
+        System.out.println(LinearSearch.searchByRecursion(students, new Student("李四")));
     }
 }
