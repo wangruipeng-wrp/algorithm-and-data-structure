@@ -2,7 +2,7 @@ package Array;
 
 /**
  * 动态数组
- * <p>
+ *
  * System.arraycopy 方法的使用说明：
  * 第一个参数：src        源数组
  * 第二个参数：srcPos     源数组的起始位置
@@ -15,7 +15,7 @@ public class Array<E> {
     private E[] data;
     private int size;
 
-    private Array(int capacity) {
+    public Array(int capacity) {
         this.data = (E[]) new Object[capacity];
         this.size = 0;
     }
@@ -33,7 +33,8 @@ public class Array<E> {
     }
 
     public void add(int index, E e) {
-        checkIndex(index);
+        if (index < 0 || index > size)
+            throw new IllegalArgumentException("add failed, Index is illegal.");
 
         if (index == data.length)
             reszie(2 * data.length);
@@ -45,21 +46,15 @@ public class Array<E> {
         size++;
     }
 
-    public void addFirst(E e) {
-        add(0, e);
-    }
-
-    public void addLast(E e) {
-        add(size, e);
-    }
-
     public E get(int index) {
-        checkIndex(index);
+        if (index < 0 || index > size)
+            throw new IllegalArgumentException("get failed, Index is illegal.");
         return data[index];
     }
 
     public void set(int index, E e) {
-        checkIndex(index);
+        if (index < 0 || index > size)
+            throw new IllegalArgumentException("set failed, Index is illegal.");
         data[index] = e;
     }
 
@@ -72,7 +67,8 @@ public class Array<E> {
     }
 
     public E remove(int index) {
-        checkIndex(index);
+        if (index < 0 || index > size)
+            throw new IllegalArgumentException("remove failed, Index is illegal.");
         E result = data[index];
 
         System.arraycopy(data, index + 1, data, index, size - index);
@@ -84,23 +80,10 @@ public class Array<E> {
         return result;
     }
 
-    public E removeFirst() {
-        return remove(0);
-    }
-
-    public E removeLast() {
-        return remove(size);
-    }
-
     public void removeElement(E e) {
         int index = find(e);
         if (index != -1)
             remove(index);
-    }
-
-    private void checkIndex(int index) {
-        if (index < 0 || index > size)
-            throw new IllegalArgumentException("Index is illegal.");
     }
 
     private void reszie(int capacity) {
