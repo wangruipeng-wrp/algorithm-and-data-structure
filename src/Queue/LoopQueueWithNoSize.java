@@ -8,6 +8,7 @@ public class LoopQueueWithNoSize<T> implements IQueue<T> {
     private T[] array;
     private int front, tail;
 
+    @SuppressWarnings("unchecked")
     public LoopQueueWithNoSize(int capacity) {
         this.array = (T[]) new Object[capacity + 1];
         front = 0;
@@ -59,6 +60,7 @@ public class LoopQueueWithNoSize<T> implements IQueue<T> {
         return array[front];
     }
 
+    @SuppressWarnings("unchecked")
     private void resize(int capacity) {
         T[] newData = (T[]) new Object[capacity];
         for (int i = 0; i < getSize(); i++) {

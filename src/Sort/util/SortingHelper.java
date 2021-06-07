@@ -1,15 +1,9 @@
 package Sort.util;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-
 /**
  * 排序测试工具类
  */
 public class SortingHelper {
-
-    public static final int[] dataSize = {10_000, 100_000};
-    public static final int recursionDataSize = 1000;
 
     /**
      * 检查排序是否正确
@@ -26,29 +20,19 @@ public class SortingHelper {
     /**
      * 测试排序性能方法
      */
-    public static <T extends Comparable<T>> void sortTest(Class<?> cl, String methodName, T[] arr) {
-        Method sortMethod;
-        try {
-            sortMethod = cl.getDeclaredMethod(methodName, Comparable[].class);
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
-            throw new RuntimeException("create sort method failed");
-        }
+    public static <T extends Comparable<T>> void sortTest(ISort sort, T[] arr) {
 
         long startTime = System.nanoTime();
-        try {
-            sortMethod.invoke(null, new Object [] {arr});
-        } catch (IllegalAccessException | InvocationTargetException e) {
-            e.printStackTrace();
-            throw new RuntimeException("invoke sort method failed");
-        }
+        sort.sort(arr);
         long endTime = System.nanoTime();
 
         double time = (endTime - startTime) / 1_000_000_000.0;
 
         if (!SortingHelper.isSorted(arr))
-            throw new RuntimeException(cl.getName() + " failed");
-        System.out.printf("%s.%s n = %d : time = %f s%n", cl.getName(), methodName, arr.length, time);
+            throw new RuntimeException("sort failed!");
+
+        Class<? extends ISort> cl = sort.getClass();
+        System.out.printf("%s n = %d : time = %f s%n", cl.getName(), arr.length, time);
     }
 
     /**

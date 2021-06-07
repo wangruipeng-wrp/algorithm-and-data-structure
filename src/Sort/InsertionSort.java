@@ -1,16 +1,16 @@
 package Sort;
 
 import Sort.util.ArrayGenerate;
+import Sort.util.ISort;
 import Sort.util.SortingHelper;
 
 /**
  * 插入排序
  */
-public class InsertionSort {
-    private InsertionSort() {
-    }
+public class InsertionSort implements ISort {
 
-    public static <T extends Comparable<T>> void sort(T[] arr) {
+    @Override
+    public <T extends Comparable<T>> void sort(T[] arr) {
         for (int i = 1; i < arr.length; i++) {
             T temp = arr[i];
             int j = i;
@@ -24,30 +24,12 @@ public class InsertionSort {
         }
     }
 
-    public static <T extends Comparable<T>> void sortByRecursion(T[] arr) {
-        sortByRecursion(arr, 1);
-    }
-
-    private static <T extends Comparable<T>> void sortByRecursion(T[] arr, int n) {
-        if (n == arr.length) return;
-
-        T temp = arr[n];
-        for (int i = n - 1; i > 0; i--) {
-            if (temp.compareTo(arr[i]) < 0)
-                arr[i + 1] = arr[i];
-            else break;
-        }
-        sortByRecursion(arr, ++n);
-    }
-
     public static void main(String[] args) {
-        for (int n : SortingHelper.dataSize) {
+        // 测试插入排序
+        int[] dataSize = {10_000, 100_000, 1_000_000};
+        for (int n : dataSize) {
             Integer[] arr = ArrayGenerate.generateRandomArray(n, Integer.MAX_VALUE);
-            SortingHelper.sortTest(InsertionSort.class, "sort", arr);
+            SortingHelper.sortTest(new InsertionSort(), arr);
         }
-
-        System.out.println();
-        Integer[] arr = ArrayGenerate.generateRandomArray(SortingHelper.recursionDataSize, Integer.MAX_VALUE);
-        SortingHelper.sortTest(InsertionSort.class, "sortByRecursion", arr);
     }
 }

@@ -9,6 +9,7 @@ public class LoopQueueWithSize<T> implements IQueue<T> {
     private int front, tail;
     private int size;
 
+    @SuppressWarnings("unchecked")
     public LoopQueueWithSize(int capacity) {
         array = (T[]) new Object[capacity];
         front = 0;
@@ -61,6 +62,7 @@ public class LoopQueueWithSize<T> implements IQueue<T> {
         return array[front];
     }
 
+    @SuppressWarnings("unchecked")
     private void resize(int capacity) {
         T[] newArray = (T[]) new Object[capacity];
         for (int i = 0; i <= size; i++)

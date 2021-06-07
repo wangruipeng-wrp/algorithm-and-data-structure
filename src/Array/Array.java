@@ -2,19 +2,13 @@ package Array;
 
 /**
  * 动态数组
- *
- * System.arraycopy 方法的使用说明：
- * 第一个参数：src        源数组
- * 第二个参数：srcPos     源数组的起始位置
- * 第三个参数：dest       目标数组
- * 第四个参数：destPos    目标数组的起始位置
- * 四五个参数：length     要复制的长度
  */
 public class Array<E> {
 
     private E[] data;
     private int size;
 
+    @SuppressWarnings("unchecked")
     public Array(int capacity) {
         this.data = (E[]) new Object[capacity];
         this.size = 0;
@@ -86,6 +80,7 @@ public class Array<E> {
             remove(index);
     }
 
+    @SuppressWarnings("unchecked")
     private void reszie(int capacity) {
         E[] newData = (E[]) new Object[capacity];
         System.arraycopy(this.data, 0, newData, 0, size);
