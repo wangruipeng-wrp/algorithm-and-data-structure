@@ -6,18 +6,6 @@ package Sort.util;
 public class SortingHelper {
 
     /**
-     * 检查排序是否正确
-     * 注：默认数组按照从小到大排序
-     */
-    public static <T extends Comparable<T>> boolean isSorted(T[] arr) {
-        for (int i = 1; i < arr.length; i++)
-            if (arr[i - 1].compareTo(arr[i]) > 0)
-                return false;
-
-        return true;
-    }
-
-    /**
      * 测试排序性能方法
      */
     public static <T extends Comparable<T>> void sortTest(ISort sort, T[] arr) {
@@ -32,7 +20,19 @@ public class SortingHelper {
             throw new RuntimeException("sort failed!");
 
         Class<? extends ISort> cl = sort.getClass();
-        System.out.printf("%s n = %d : time = %f s%n", cl.getName(), arr.length, time);
+        System.out.printf("%s n = %d \t: time = %f s%n", cl.getName(), arr.length, time);
+    }
+
+    /**
+     * 检查排序是否正确
+     * 注：默认数组按照从小到大排序
+     */
+    public static <T extends Comparable<T>> boolean isSorted(T[] arr) {
+        for (int i = 1; i < arr.length; i++)
+            if (arr[i - 1].compareTo(arr[i]) > 0)
+                return false;
+
+        return true;
     }
 
     /**
