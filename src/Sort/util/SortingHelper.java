@@ -20,7 +20,7 @@ public class SortingHelper {
             throw new RuntimeException("sort failed!");
 
         Class<? extends ISort> cl = sort.getClass();
-        System.out.printf("%s n = %d \t: time = %f s%n", cl.getName(), arr.length, time);
+        System.out.printf("%s n = %d : time = %f s%n", cl.getName(), arr.length, time);
     }
 
     /**
