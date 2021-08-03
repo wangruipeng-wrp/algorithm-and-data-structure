@@ -63,9 +63,10 @@ public class Array<E> {
     public E remove(int index) {
         if (index < 0 || index > size)
             throw new IllegalArgumentException("remove failed, Index is illegal.");
-        E result = data[index];
 
-        System.arraycopy(data, index + 1, data, index, size - index);
+        E result = data[index];
+        if (size - (index + 1) >= 0)
+            System.arraycopy(data, index + 1, data, index + 1 - 1, size - (index + 1));
         size--;
 
         if (size != 0 && size == data.length / 4)

@@ -30,16 +30,14 @@ public class QuickSortByThreeWays implements ISort {
         int lt = l, i = l + 1, gt = r + 1;
         while (i < gt) {
 
-            if (arr[i].compareTo(arr[l]) < 0) {
+            if (arr[i].compareTo(arr[l]) < 0)
                 SortingHelper.swap(arr, ++lt, i++);
-                continue;
-            }
-            if (arr[i].compareTo(arr[l]) > 0) {
-                SortingHelper.swap(arr, i, --gt);
-                continue;
-            }
 
-            i++;
+            else if (arr[i].compareTo(arr[l]) > 0)
+                SortingHelper.swap(arr, i, --gt);
+
+            else
+                i++;
         }
         SortingHelper.swap(arr, l, lt);
 

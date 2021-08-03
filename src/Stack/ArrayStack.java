@@ -29,7 +29,7 @@ public class ArrayStack<T> implements IStack<T>{
 
     @Override
     public void push(T e) {
-        array.add(array.getSize() - 1, e);
+        array.add(array.getSize(), e);
     }
 
     @Override
