@@ -86,7 +86,7 @@ public class AVL {
     private Node add(Node root, int e) {
         if (root == null) {
             size++;
-            return new AVL.AVL.Node(e, null, null);
+            return new Node(e, null, null);
         }
 
         if (e < root.e) root.left = add(root.left, e);
